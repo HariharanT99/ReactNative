@@ -1,25 +1,15 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Drawer, IconButton, MD3Colors } from "react-native-paper";
-
-
-
-interface IDrawerItem {
-  lable: string
-  clickable: boolean
-  style: IDrawerStyle
-}
-
-interface IDrawerStyle {
-  backgroundColor: string
-  borderTopRightRadius: number
-  borderBottomRightRadius: number
-}
+import { Drawer, IconButton, MD3Colors, Text } from "react-native-paper";
+import DrawerContainer from "./drawer/MenuContainer";
+import MenuItem from "./drawer/MenuItem";
+import MenuContainer from "./drawer/MenuContainer";
 
 const defaultMenuColor = "#2563EB";
 
-const defaultMenuStyle : IDrawerStyle = {
+const defaultMenuStyle : IMenuItemStyle = {
   backgroundColor: defaultMenuColor,
+  color: "white",
   borderBottomRightRadius: 0,
   borderTopRightRadius: 0
 };
@@ -31,75 +21,87 @@ enum MenuType {
   Next
 }
 
-const list: IDrawerItem[] = [
+const list: IMenu[] = [
   {
     lable: "",
     clickable: false,
+    iconSource: "",
     style: defaultMenuStyle
   },
   {
     lable: "Dashboard",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Objekt",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Inspektion",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Checklista",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Kund",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Förvaltare",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "User",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Inställningar",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Skyltning",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "Aktivitetslogg",
     clickable: true,
+    iconSource: "camera",
     style: defaultMenuStyle
   },
   {
     lable: "",
     clickable: false,
+    iconSource: "",
     style: defaultMenuStyle
   },
 ]
 
 export default function App() {
-  const [active, setActive] = useState(-1);
+  // const [active, setActive] = useState(-1);
   const [menuList, setMenuList] = useState(list);
 
   const onSelectMenu = (index: number) => {
-    setActive(index);
+    // setActive(index);
     const newMenuList = [...menuList];
     newMenuList.forEach(m => m.style = setStyle(MenuType.Default))
     newMenuList[index].style = setStyle(MenuType.Active)
@@ -116,11 +118,12 @@ export default function App() {
     setMenuList(newMenuList);
   }
 
-  const setStyle = (menuType: MenuType): IDrawerStyle => {
+  const setStyle = (menuType: MenuType): IMenuItemStyle => {
     switch (menuType) {
       case MenuType.Default: {
         return {
           backgroundColor: "#2563EB",
+          color: "white",
           borderBottomRightRadius: 0,
           borderTopRightRadius: 0
         };
@@ -129,6 +132,7 @@ export default function App() {
       case MenuType.Active: {
         return {
           backgroundColor: "transparent",
+          color: "black",
           borderBottomRightRadius: 0,
           borderTopRightRadius: 0
         };
@@ -137,6 +141,7 @@ export default function App() {
       case MenuType.Previous: {
         return {
           backgroundColor: "#2563EB",
+          color: "white",
           borderBottomRightRadius: 40,
           borderTopRightRadius: 0
         };
@@ -145,6 +150,7 @@ export default function App() {
       case MenuType.Next: {
         return {
           backgroundColor: "#2563EB",
+          color: "white",
           borderBottomRightRadius: 0,
           borderTopRightRadius: 40
         };
@@ -154,6 +160,7 @@ export default function App() {
         //statements; 
         return {
           backgroundColor: "#2563EB",
+          color: "white",
           borderBottomRightRadius: 0,
           borderTopRightRadius: 0
         };
@@ -164,7 +171,7 @@ export default function App() {
 
   return (
     <View style={styles.contaier} onTouchStart={() => { }}>
-      <Drawer.Section title="Menu" style={styles.drawerSection}>
+      {/* <Drawer.Section title="Menu" style={styles.drawerSection}>
         {menuList.map((menu: IDrawerItem, index: number) => (
           <Drawer.Item style={[styles.drawerItem, menu.style]} label={menu.lable} active={active === index} onPress={() => menu.clickable && onSelectMenu(index)} />
         ))}
@@ -174,7 +181,8 @@ export default function App() {
         iconColor={MD3Colors.error50}
         size={20}
         onPress={() => console.log('Pressed')}
-      />
+      /> */}
+      <MenuContainer menuList={menuList} onSelectMenu={onSelectMenu}/>
     </View>
   );
 }
