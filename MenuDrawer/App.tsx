@@ -9,9 +9,13 @@ const defaultMenuColor = "#2563EB";
 
 const defaultMenuStyle : IMenuItemStyle = {
   backgroundColor: defaultMenuColor,
+  parentBackgroundColor: defaultMenuColor,
   color: "white",
+  borderRadius: 0,
   borderBottomRightRadius: 0,
-  borderTopRightRadius: 0
+  borderTopRightRadius: 0,
+  marginLeft: 0,
+  paddingLeft: 25
 };
 
 enum MenuType {
@@ -114,7 +118,7 @@ export default function App() {
     if (newMenuList[nextMenu])
       newMenuList[nextMenu].style = setStyle(MenuType.Next);
 
-    console.log(newMenuList);
+    // console.log(newMenuList);
     setMenuList(newMenuList);
   }
 
@@ -122,47 +126,67 @@ export default function App() {
     switch (menuType) {
       case MenuType.Default: {
         return {
-          backgroundColor: "#2563EB",
+          backgroundColor: defaultMenuColor,
+          parentBackgroundColor: defaultMenuColor,
           color: "white",
           borderBottomRightRadius: 0,
-          borderTopRightRadius: 0
+          borderTopRightRadius: 0,
+          borderRadius: 0,
+          marginLeft: 0,
+          paddingLeft: 25
         };
         break;
       }
       case MenuType.Active: {
         return {
-          backgroundColor: "transparent",
+          backgroundColor: "#F3F4F6",
+          parentBackgroundColor: defaultMenuColor,
           color: "black",
           borderBottomRightRadius: 0,
-          borderTopRightRadius: 0
+          borderTopRightRadius: 0,
+          borderRadius: 40,
+          marginLeft: 10,
+          paddingLeft: 15
         };
         break;
       }
       case MenuType.Previous: {
         return {
-          backgroundColor: "#2563EB",
+          backgroundColor: defaultMenuColor,
+          parentBackgroundColor: "#F3F4F6",
           color: "white",
+          borderRadius: 0,
           borderBottomRightRadius: 40,
-          borderTopRightRadius: 0
+          borderTopRightRadius: 0,
+          marginLeft: 0,
+          paddingLeft: 25
         };
         break;
       }
       case MenuType.Next: {
         return {
-          backgroundColor: "#2563EB",
+          backgroundColor: defaultMenuColor,
+          parentBackgroundColor: "#F3F4F6",
           color: "white",
+          borderRadius: 0,
           borderBottomRightRadius: 0,
-          borderTopRightRadius: 40
+          borderTopRightRadius: 40,
+          marginLeft: 0,
+          paddingLeft: 25
         };
         break;
       }
       default: {
         //statements; 
         return {
-          backgroundColor: "#2563EB",
+          backgroundColor: defaultMenuColor,
+          parentBackgroundColor: defaultMenuColor,
           color: "white",
+          borderRadius: 0,
           borderBottomRightRadius: 0,
-          borderTopRightRadius: 0
+          borderTopRightRadius: 0,
+          marginLeft: 0,
+          paddingLeft: 0
         };
         break;
       }
@@ -195,7 +219,7 @@ const styles = StyleSheet.create({
   },
   drawerSection: {
     width: "60%",
-    // backgroundColor: "#2563EB"
+    // backgroundColor: defaultMenuColor
     // borderColor: "red",
     // borderWidth: 5,
     // shadowColor: "grey",
@@ -207,6 +231,6 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     borderRadius: 0,
     color: "red",
-    backgroundColor: "#2563EB"
+    backgroundColor: defaultMenuColor
   }
 });

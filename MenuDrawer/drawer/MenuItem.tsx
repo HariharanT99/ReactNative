@@ -10,15 +10,17 @@ interface IMenuItem {
 
 const MenuItem = (props: IMenuItem) => {
     return (
-        <View style={[styles.menuItemContainer, props.menu.style]} onTouchStart={() => props.menu.clickable && props.onSelectMenu(props.index)} key={props.index}>
-            <View style={styles.icon}>
-                <Icon
-                    source={props.menu.iconSource}
-                    color={MD3Colors.error0}
-                    size={20}
-                />
+        <View style={[{backgroundColor: props.menu.style.parentBackgroundColor}]}>
+            <View style={[styles.menuItemContainer, props.menu.style]} onTouchStart={() => props.menu.clickable && props.onSelectMenu(props.index)} key={props.index}>
+                <View style={styles.icon}>
+                    <Icon
+                        source={props.menu.iconSource}
+                        color={MD3Colors.error0}
+                        size={20}
+                    />
+                </View>
+                <Text style={[styles.lable, { color: props.menu.style.color }]}>{props.menu.lable}</Text>
             </View>
-            <Text style={[styles.lable, {color: props.menu.style.color}]}>{props.menu.lable}</Text>
         </View>
     )
 }
@@ -26,6 +28,9 @@ const MenuItem = (props: IMenuItem) => {
 export default MenuItem;
 
 const styles = StyleSheet.create({
+    // parentMenuItemContainer: {
+    //     paddingLeft:5
+    // },
     menuItemContainer: {
         minHeight: 30,
         display: "flex",
