@@ -1,16 +1,18 @@
 import { StyleSheet, View } from "react-native";
-import { Icon, IconButton, MD3Colors, Text } from "react-native-paper";
+import { Icon, MD3Colors, Text } from "react-native-paper";
+import { IMenu } from "../model/DrawerModel";
 
 
 interface IMenuItem {
     menu: IMenu
     index: number
     onSelectMenu: (index: number) => void
+    menuExpanded: boolean
 }
 
 const MenuItem = (props: IMenuItem) => {
     return (
-        <View style={[{backgroundColor: props.menu.style.parentBackgroundColor}]}>
+        <View style={[{backgroundColor: props.menu.style.parentBackgroundColor, flex: props.menu.style.flex}]}>
             <View style={[styles.menuItemContainer, props.menu.style]} onTouchStart={() => props.menu.clickable && props.onSelectMenu(props.index)} key={props.index}>
                 <View style={styles.icon}>
                     <Icon
@@ -19,7 +21,8 @@ const MenuItem = (props: IMenuItem) => {
                         size={20}
                     />
                 </View>
-                <Text style={[styles.lable, { color: props.menu.style.color }]}>{props.menu.lable}</Text>
+                {props.menuExpanded &&                 
+                <Text style={[styles.lable, { color: props.menu.style.color }]}>{props.menu.lable}</Text>}
             </View>
         </View>
     )
@@ -32,7 +35,7 @@ const styles = StyleSheet.create({
     //     paddingLeft:5
     // },
     menuItemContainer: {
-        minHeight: 30,
+        // minHeight: 30,
         display: "flex",
         flexDirection: "row",
         // justifyContent: "space-evenly",

@@ -2,9 +2,6 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, ParamListBase } from '@react-navigation/native';
 
-import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import SideMenu from '../components/SideMenu';
 // import { createStackNavigator } from '@react-navigation/stack';
 
 const Drawer = createDrawerNavigator<ParamListBase>();
